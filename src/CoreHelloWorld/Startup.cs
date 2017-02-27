@@ -7,8 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using MySQL.Data.EntityFrameworkCore.Extensions;
 using CoreHelloWorld.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace CoreHelloWorld
 {
@@ -39,8 +39,8 @@ namespace CoreHelloWorld
 
             services.AddMvc();
 
-            var connectionString = Configuration["DefaultConnection"];
-            services.AddDbContext<AppContext>(options => options.UseMySQL(connectionString));
+            var connectionString = Configuration["DB_CONNECTION_STRING"];
+            services.AddDbContext<AppContext>(options => options.UseMySql(connectionString));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -71,7 +71,7 @@ namespace CoreHelloWorld
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-
+            
             DbInitializer.Initialize(context);
         }
     }

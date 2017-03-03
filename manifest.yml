@@ -2,3 +2,5 @@
 applications:
   - name: CoreHelloWorld
     memory: 512M
+    env:
+      CACHE_NUGET_PACKAGES: false

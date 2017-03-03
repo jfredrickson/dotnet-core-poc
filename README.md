@@ -33,12 +33,14 @@ You can also run it from the command line:
 ```
 setx ASPNETCORE_ENVIRONMENT=Development
 cd src\CoreSandbox
+dotnet restore
 dotnet run
 ```
 
 **Linux/macOS**
 ```
 cd src/CoreSandbox
+dotnet restore
 ASPNETCORE_ENVIRONMENT=Development dotnet run
 ```
 

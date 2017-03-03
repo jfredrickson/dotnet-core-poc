@@ -31,7 +31,7 @@ You can also run it from the command line:
 
 **Windows**
 ```
-setx ASPNETCORE_ENVIRONMENT=Development
+setx ASPNETCORE_ENVIRONMENT Development
 cd src\CoreSandbox
 dotnet restore
 dotnet run

@@ -7,25 +7,20 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using CoreHelloWorld.Models;
+using CoreSandbox.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace CoreHelloWorld
+namespace CoreSandbox
 {
     public class Startup
     {
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
-
-            if (env.IsDevelopment())
-            {
-                // This will push telemetry data through Application Insights pipeline faster, allowing you to view results immediately.
-                builder.AddApplicationInsightsSettings(developerMode: true);
-            }
             Configuration = builder.Build();
         }
 
@@ -35,20 +30,25 @@ namespace CoreHelloWorld
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            services.AddApplicationInsightsTelemetry(Configuration);
-
             services.AddMvc();
 
-            var connectionString = Configuration["DB_CONNECTION_STRING"];
-            services.AddDbContext<AppContext>(options => options.UseMySql(connectionString));
+            var databaseUrl = Configuration["DATABASE_URL"];
+            var databaseUri = new Uri(databaseUrl);
+            var databaseServer = databaseUri.Host;
+            var databaseUsername = databaseUri.UserInfo.Split(':')[0];
+            var databasePassword = databaseUri.UserInfo.Split(':')[1];
+            var databasePort = databaseUri.Port;
+            var databaseName = databaseUri.AbsolutePath.TrimStart('/');
+            var connectionString = $"Server={databaseServer};Uid={databaseUsername};Pwd={databasePassword};Port={databasePort};Database={databaseName};";
+            services.AddDbContext<AppDbContext>(options => options.UseMySql(connectionString));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, AppContext context)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, AppDbContext context)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-            
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -58,7 +58,7 @@ namespace CoreHelloWorld
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-            
+
             app.UseStaticFiles();
 
             app.UseMvc(routes =>
@@ -67,8 +67,8 @@ namespace CoreHelloWorld
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-            
-            DbInitializer.Initialize(context);
+
+            DatabaseInitializer.Initialize(context);
         }
     }
 }

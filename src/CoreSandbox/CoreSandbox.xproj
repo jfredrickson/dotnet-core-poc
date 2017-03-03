@@ -6,8 +6,8 @@
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\DotNet\Microsoft.DotNet.Props" Condition="'$(VSToolsPath)' != ''" />
   <PropertyGroup Label="Globals">
-    <ProjectGuid>bdf74ea9-8d25-41aa-b17f-a7fbb09a084c</ProjectGuid>
-    <RootNamespace>CoreHelloWorld</RootNamespace>
+    <ProjectGuid>e93d5647-547f-4304-a34b-43ca0a0e3218</ProjectGuid>
+    <RootNamespace>CoreSandbox</RootNamespace>
     <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'=='' ">.\obj</BaseIntermediateOutputPath>
     <OutputPath Condition="'$(OutputPath)'=='' ">.\bin\</OutputPath>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>

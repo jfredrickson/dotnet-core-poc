@@ -4,11 +4,11 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CoreHelloWorld.Models
+namespace CoreSandbox.Models
 {
     public class Widget
     {
-        public Widget() {}
+        public Widget() { }
 
         public int Id { get; set; }
         [MaxLength(45)]

@@ -1,0 +1,16 @@
+﻿@using CoreSandbox.Models;
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <h1>.NET Core Sandbox</h1>
+        <ul>
+            @foreach(var widget in (IEnumerable<Widget>)ViewData["widgets"])
+            {
+                <li>@widget.Name</li>
+            }
+        </ul>
+    </div>
+</div>

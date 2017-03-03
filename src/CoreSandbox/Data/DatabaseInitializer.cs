@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CoreSandbox.Models;
 
-namespace CoreHelloWorld.Models
+namespace CoreSandbox.Data
 {
-    public class DbInitializer
+    public class DatabaseInitializer
     {
-        public static void Initialize(AppContext context)
+        public static void Initialize(AppDbContext context)
         {
             context.Database.EnsureCreated();
 

@@ -46,5 +46,5 @@ ASPNETCORE_ENVIRONMENT=Development dotnet run
 
 1. Create a MySQL [relational database service](https://cloud.gov/docs/services/relational-database/) instance for the app to use.
 2. Update `manifest.yml` with the new database service name.
-3. Run `build` to create a self-contained deployment package.
+3. Run `build.cmd` (Windows) or `build.sh` (Linux/macOS) to create a self-contained deployment package.
 4. Run `cf push` to push the package to cloud.gov.

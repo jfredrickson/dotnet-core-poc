@@ -25,7 +25,7 @@ Replace `USERNAME`, `PASSWORD`, `HOST`, `PORT`, and `DATABASE` with the appropri
 
 ### Running the App
 
-You should now be able to debug the application locally by running it from Visual Studio.
+You should now be able to debug the application locally by running it from Visual Studio Code or Visual Studio 2017.
 
 You can also run it from the command line:
 

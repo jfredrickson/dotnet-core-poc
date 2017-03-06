@@ -9,7 +9,7 @@ It uses Entity Framework Core and MySQL for persistence.
 ### Prerequisites
 
 1. MySQL server (e.g., running on localhost). Add a database and database user for this app.
-2. [.NET Core SDK](https://www.microsoft.com/net/download/core)
+2. [.NET Core SDK](https://www.microsoft.com/net/download/core) (see [global.json](global.json) for specific version of SDK in use)
 
 ### Setup
 

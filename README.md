@@ -4,7 +4,9 @@ This is a small proof-of-concept demonstrating .NET Core on cloud.gov.
 
 It uses Entity Framework Core and MySQL for persistence.
 
-## Development
+## Local Development
+
+These steps describe how to get the app running on your local machine.
 
 ### Prerequisites
 

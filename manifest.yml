@@ -3,7 +3,7 @@ applications:
   - name: coresandbox
     memory: 256M
     buildpack: https://github.com/cloudfoundry/dotnet-core-buildpack.git
-    path: src/CoreSandbox/bin/Debug/netcoreapp1.0/publish
+    path: src/CoreSandbox/bin/Debug/netcoreapp1.1/publish
     services:
       - coresandbox-db
     env:
